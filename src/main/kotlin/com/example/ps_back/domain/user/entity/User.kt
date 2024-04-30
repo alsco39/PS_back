@@ -1,6 +1,6 @@
 package com.example.ps_back.domain.user.entity
 
-import com.example.ps_back.domain.user.entity.enums.Authority
+import com.example.ps_back.global.enums.Authority
 import com.example.ps_back.global.entity.BaseIdEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -33,6 +33,6 @@ class User (
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(9)")
-    val authority: Authority
+    @Column(columnDefinition = "VARCHAR(15)")
+    val role: Authority,
 ) : BaseIdEntity(id)
