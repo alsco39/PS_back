@@ -1,7 +1,5 @@
 package com.example.ps_back.global.error.exception
 
-import com.example.ps_back.global.security.ErrorCode
-
 abstract class PsException(
     val errorCode: ErrorCode,
 ) : RuntimeException() {
