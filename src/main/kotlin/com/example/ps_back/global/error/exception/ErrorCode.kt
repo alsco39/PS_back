@@ -5,5 +5,8 @@ enum class ErrorCode(
     val message: String,
 ){
 
+    EXPIRED_TOKEN(401, "Expired Token."),
+    INVALID_TOKEN(401, "Invalid Token."),
+
     INTERNAL_SERVER_ERROR(500, "Internal Server Error.");
 }
