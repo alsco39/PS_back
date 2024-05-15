@@ -13,7 +13,7 @@ import jakarta.validation.constraints.NotNull
 @Entity
 class User (
 
-    id: Long,
+    id: Long = 0,
 
     @NotNull
     @Column(columnDefinition = "VARCHAR(17)")
