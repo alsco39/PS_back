@@ -4,9 +4,12 @@ enum class ErrorCode(
     val status: Int,
     val message: String,
 ){
+    PASSWORD_MISMATCHED(400, "Password Mis Matched."),
 
     EXPIRED_TOKEN(401, "Expired Token."),
     INVALID_TOKEN(401, "Invalid Token."),
+
+    USER_NOT_FOUND(404, "User Not Found."),
 
     USER_ALREADY_EXIST(409, "User Already Exist."),
 
