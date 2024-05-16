@@ -21,10 +21,7 @@ class Pet (
 
     id: Long,
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    val user: User,
+    user: User,
 
     @NotNull
     @ColumnDefault("''")
@@ -37,11 +34,17 @@ class Pet (
     val gender: Gender,
 
     @NotNull
-    @ColumnDefault("''")
-    @Column(columnDefinition = "INT(256)")
+    @Column(columnDefinition = "INT(255)")
     val age: Int,
 
     @NotNull
     @Column(columnDefinition = "VARCHAR(30)")
     val tendency: Tendency
-)  : BaseIdEntity(id)
+)  : BaseIdEntity(id) {
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    var user = user
+        protected set
+}

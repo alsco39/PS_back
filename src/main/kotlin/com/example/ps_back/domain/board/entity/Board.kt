@@ -21,11 +21,6 @@ class Board (
     id: Long,
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    val user: User,
-
-    @NotNull
     @ColumnDefault("''")
     @Column(columnDefinition = "VARCHAR(50)")
     val title: String,
@@ -38,12 +33,12 @@ class Board (
     val note: String,
 
     @NotNull
-    @ColumnDefault("EMPLOYMENT")
+    @ColumnDefault("'EMPLOYMENT'")
     @Column(columnDefinition = "VARCHAR(10)")
     val type: BoardType,
 
     @NotNull
-    @Column(columnDefinition = "INT(256)")
+    @Column(columnDefinition = "INT(255)")
     val money: Int,
 
     @NotNull
@@ -53,4 +48,13 @@ class Board (
     @CreatedDate
     val start_date: LocalDate,
 
-) : BaseIdEntity(id)
+    user: User
+
+) : BaseIdEntity(id) {
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    var user = user
+        protected set
+}
