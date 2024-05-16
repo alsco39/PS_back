@@ -26,7 +26,7 @@ class Board (
     val title: String,
 
     @NotNull
-    val end_date: LocalDate,
+    val endDate: LocalDate,
 
     @ColumnDefault("''")
     @Column(columnDefinition = "VARCHAR(500)")
@@ -46,7 +46,7 @@ class Board (
     val area: String,
 
     @CreatedDate
-    val start_date: LocalDate,
+    val startDate: LocalDate,
 
     user: User
 
