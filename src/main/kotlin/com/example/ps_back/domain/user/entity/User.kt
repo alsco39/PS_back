@@ -20,7 +20,7 @@ class User (
     val name: String,
 
     @NotNull
-    @Column(columnDefinition = "CHAR(11)", unique = true)
+    @Column(columnDefinition = "CHAR(13)", unique = true)
     val phone: String,
 
     @NotNull
