@@ -18,7 +18,7 @@ import java.time.LocalDate
 @Entity
 class Board (
 
-    id: Long,
+    id: Long = 0,
 
     @NotNull
     @ColumnDefault("''")
