@@ -23,14 +23,14 @@ class Board (
     @NotNull
     @ColumnDefault("''")
     @Column(columnDefinition = "VARCHAR(50)")
-    val title: String,
+    var title: String,
 
     @NotNull
-    val endDate: LocalDate,
+    var endDate: LocalDate,
 
     @ColumnDefault("''")
     @Column(columnDefinition = "VARCHAR(500)")
-    val note: String,
+    var note: String,
 
     @NotNull
     @ColumnDefault("'EMPLOYMENT'")
@@ -39,14 +39,14 @@ class Board (
 
     @NotNull
     @Column(columnDefinition = "INT(255)")
-    val money: Int,
+    var money: Int,
 
     @NotNull
     @Column(columnDefinition = "VARCHAR(100)")
-    val area: String,
+    var area: String,
 
     @CreatedDate
-    val startDate: LocalDate,
+    var startDate: LocalDate,
 
     user: User
 
@@ -57,4 +57,15 @@ class Board (
     @JoinColumn(name = "user_id")
     var user = user
         protected set
+
+    fun updateBoard(title: String, startDate: LocalDate, endDate: LocalDate,
+                    note: String, money: Int, area: String) {
+
+        this.title = title
+        this.startDate = startDate
+        this.endDate = endDate
+        this.note = note
+        this.money = money
+        this.area = area
+    }
 }
