@@ -3,6 +3,7 @@ package com.example.ps_back.domain.board.facade
 import com.example.ps_back.domain.board.entity.Board
 import com.example.ps_back.domain.board.entity.repository.BoardRepository
 import com.example.ps_back.domain.board.exception.BoardNotFoundException
+import com.example.ps_back.domain.board.presentation.dto.response.BoardElement
 import org.springframework.stereotype.Component
 import java.util.*
 
@@ -13,5 +14,13 @@ class BoardFacade(
 
     fun getByBoardId(boardId: Long): Board {
         return boardRepository.findById(boardId).orElseThrow { BoardNotFoundException }
+    }
+
+    fun getBoardList(): List<BoardElement> {
+        return boardRepository.findAllByOrderByCreateDate()
+    }
+
+    fun deleteBoard(boardId: Long) {
+        boardRepository.deleteBoardById(boardId)
     }
 }
