@@ -13,7 +13,7 @@ import java.time.LocalDate
 @Entity
 class CareLog (
 
-    id: Long,
+    id: Long = 0,
 
     @CreatedDate
     val createDate: LocalDate,

@@ -17,7 +17,9 @@ class Care (
 
     pet: Pet,
 
-    user: User
+    user: User,
+
+    var isTrue: Boolean,
 ) : BaseIdEntity(id) {
 
     @NotNull
@@ -28,7 +30,7 @@ class Care (
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "pet_id")
     var pet = pet
         protected set
 }

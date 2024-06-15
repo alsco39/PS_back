@@ -5,7 +5,6 @@ import com.example.ps_back.domain.board.entity.repository.BoardRepository
 import com.example.ps_back.domain.board.exception.BoardNotFoundException
 import com.example.ps_back.domain.board.presentation.dto.response.BoardElement
 import org.springframework.stereotype.Component
-import java.util.*
 
 @Component
 class BoardFacade(
@@ -16,7 +15,7 @@ class BoardFacade(
         return boardRepository.findById(boardId).orElseThrow { BoardNotFoundException }
     }
 
-    fun getBoardList(): List<BoardElement> {
+    fun getBoardList(): List<Board> {
         return boardRepository.findAllByOrderByCreateDate()
     }
 

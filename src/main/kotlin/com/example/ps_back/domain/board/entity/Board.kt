@@ -11,7 +11,6 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import jakarta.validation.constraints.NotNull
 import org.hibernate.annotations.ColumnDefault
-import org.springframework.data.annotation.CreatedDate
 import java.time.LocalDate
 
 @Table(name = "tbl_board")
@@ -45,8 +44,9 @@ class Board (
     @Column(columnDefinition = "VARCHAR(100)")
     var area: String,
 
-    @CreatedDate
     var startDate: LocalDate,
+
+    val createDate: LocalDate,
 
     user: User
 

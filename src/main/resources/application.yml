@@ -28,3 +28,16 @@ jwt:
   prefix : ${PREFIX}
   secret-key: ${JWT_SECRET}
   access-exp: ${ACCESS_EXP}
+
+cloud:
+  aws:
+    credentials:
+    access-key: ${AWS_ACCESS_KEY}
+    secret-key: ${AWS_SECRET_KEY}
+  s3:
+    bucket: dsm-psbucket
+    url: ${BASE_URL}
+  region:
+    static: ap-northeast-2
+  stack:
+    auto: false

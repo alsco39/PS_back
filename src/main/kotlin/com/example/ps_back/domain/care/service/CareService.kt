@@ -29,6 +29,7 @@ class CareService(
             Care(
                 pet = pet,
                 user = user,
+                isTrue = false,
             )
         )
     }

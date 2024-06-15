@@ -5,6 +5,4 @@ import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface CareRepository : CrudRepository<Care, Long> {
-    fun findCareBy
-}
+interface CareRepository : CrudRepository<Care, Long>

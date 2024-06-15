@@ -4,21 +4,22 @@ import com.example.ps_back.global.error.ExceptionFilter
 import com.example.ps_back.global.security.jwt.JwtFilter
 import com.example.ps_back.global.security.jwt.JwtTokenProvider
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.springframework.security.config.annotation.SecurityConfigurerAdapter
+import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.annotation.SecurityConfigurer
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.web.DefaultSecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 
-class FilterConfig (
-    val objectMapper: ObjectMapper,
-    val jwtTokenProvider: JwtTokenProvider,
-) : SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>() {
+@Configuration
+class FilterConfig(
+    private val jwtTokeProvider: JwtTokenProvider,
+    private val objectMapper: ObjectMapper,
+) : SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> {
 
     override fun configure(builder: HttpSecurity) {
-        val tokenFilter = JwtFilter(jwtTokenProvider)
-        val exceptionFilter = ExceptionFilter(objectMapper)
-
-        builder.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter::class.java)
-        builder.addFilterBefore(exceptionFilter, JwtFilter::class.java)
+        builder.addFilterBefore(JwtFilter(jwtTokeProvider), UsernamePasswordAuthenticationFilter::class.java)
+        builder.addFilterBefore(ExceptionFilter(objectMapper), JwtFilter::class.java)
     }
+
+    override fun init(builder: HttpSecurity?) {}
 }

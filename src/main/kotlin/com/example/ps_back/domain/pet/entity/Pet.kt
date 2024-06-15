@@ -19,7 +19,7 @@ import org.hibernate.annotations.ColumnDefault
 @Entity
 class Pet (
 
-    id: Long,
+    id: Long = 0,
 
     user: User,
 
@@ -39,7 +39,10 @@ class Pet (
 
     @NotNull
     @Column(columnDefinition = "VARCHAR(30)")
-    val tendency: Tendency
+    val tendency: Tendency,
+
+    @Column(columnDefinition = "VARCHAR(255)")
+    val profile: String,
 )  : BaseIdEntity(id) {
 
     @NotNull

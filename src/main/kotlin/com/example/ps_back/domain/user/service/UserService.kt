@@ -14,7 +14,6 @@ import com.example.ps_back.global.security.jwt.JwtTokenProvider
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Service
@@ -42,6 +41,22 @@ class UserService(
     }
 
     @Transactional
+    public fun petSitterSignUp(request: UserSignUpRequest) {
+        val checkExistUser = userRepository.existsUserByAccountId(request.accountId)
+        if(checkExistUser) throw UserAlreadyExistException
+
+        userRepository.save(
+            User(
+                name = request.name,
+                phone = request.phone,
+                accountId = request.accountId,
+                password = passwordEncoder.encode(request.password),
+                role = Authority.PET_SITTER
+            )
+        )
+    }
+
+    @Transactional
     public fun userSignIn(request: UserSignInRequest): TokenResponse {
         val user = userRepository.findUserByAccountId(request.accountId) ?: throw UserNotFoundException
 
@@ -53,7 +68,7 @@ class UserService(
         return TokenResponse(
             accessToken = accessToken,
             expiredAt = LocalDateTime.now().plusSeconds(jwtProperties.accessExp),
-            authority = user.role,
+            role = user.role,
         )
     }
 }

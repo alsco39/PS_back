@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface BoardRepository : CrudRepository<Board, Long> {
-    fun findAllByOrderByCreateDate(): List<BoardElement>
+    fun findAllByOrderByCreateDate(): List<Board>
 
     fun deleteBoardById(id: Long)
 }

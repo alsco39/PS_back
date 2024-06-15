@@ -8,12 +8,13 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
+import org.apache.naming.SelectorContext.prefix
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
-import org.springframework.util.StringUtils
-import java.util.Date
+import java.util.*
+
 
 @Component
 class JwtTokenProvider(
@@ -58,12 +59,11 @@ class JwtTokenProvider(
         }
     }
 
-    public fun resolveToken(request: HttpServletRequest): String? {
-        val bearerToken: String = request.getHeader(jwtProperties.header)
-
-        return if(StringUtils.hasText(bearerToken) && bearerToken.startsWith(jwtProperties.prefix)
-            && bearerToken.length > (jwtProperties.prefix.length + 1)) {
-            bearerToken.substring(jwtProperties.prefix.length + 1)
-        } else null
+    fun resolveToken(request: HttpServletRequest): String? {
+        val bearer = request.getHeader(jwtProperties.header)
+        if (bearer != null && bearer.startsWith(prefix) && bearer.length > prefix.length + 1) return bearer.substring(
+            prefix.length + 1
+        )
+        return null
     }
 }

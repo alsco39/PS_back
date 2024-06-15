@@ -19,7 +19,13 @@ class UserController(
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
-    public fun signUp(@RequestBody request: UserSignUpRequest) {
+    public fun userSignUp(@RequestBody request: UserSignUpRequest) {
+        userService.userSignUp(request)
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/pesitter/signup")
+    public fun petSitterSignUp(@RequestBody request: UserSignUpRequest) {
         userService.userSignUp(request)
     }
 

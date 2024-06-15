@@ -7,8 +7,6 @@ data class CreateBoardRequest(
     @field: NotBlank
     val title: String,
     @field: NotBlank
-    val period: LocalDate,
-    @field: NotBlank
     val note: String,
     @field: NotBlank
     val money: Int,
