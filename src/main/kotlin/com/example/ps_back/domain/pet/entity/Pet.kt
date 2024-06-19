@@ -1,7 +1,6 @@
 package com.example.ps_back.domain.pet.entity
 
 import com.example.ps_back.domain.pet.entity.enums.Gender
-import com.example.ps_back.domain.pet.entity.enums.Tendency
 import com.example.ps_back.domain.user.entity.User
 import com.example.ps_back.global.entity.BaseIdEntity
 import jakarta.persistence.Column
@@ -39,7 +38,7 @@ class Pet (
 
     @NotNull
     @Column(columnDefinition = "VARCHAR(30)")
-    val tendency: Tendency,
+    val tendency: String,
 
     @Column(columnDefinition = "VARCHAR(255)")
     val profile: String,
