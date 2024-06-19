@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 class FilterConfig(
     private val jwtTokeProvider: JwtTokenProvider,
-    private val objectMapper: ObjectMapper,
+    private val objectMapper: ObjectMapper
 ) : SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> {
 
     override fun configure(builder: HttpSecurity) {
