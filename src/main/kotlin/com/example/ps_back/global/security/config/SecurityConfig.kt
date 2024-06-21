@@ -27,8 +27,10 @@ class SecurityConfig(
             authorizeHttpRequests {
                 authorize(HttpMethod.POST, "/users/signup", permitAll)
                 authorize(HttpMethod.POST, "/users/signin", permitAll)
-                authorize(HttpMethod.POST, "/images/upload", permitAll)
-                authorize(anyRequest, permitAll)
+
+                authorize(HttpMethod.POST, "/images/upload", authenticated)
+
+                authorize(HttpMethod.POST, "/pets", authenticated)
             }
 
             sessionManagement { sessionCreationPolicy = SessionCreationPolicy.STATELESS }

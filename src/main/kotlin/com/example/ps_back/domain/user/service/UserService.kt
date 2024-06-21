@@ -57,7 +57,7 @@ class UserService(
     }
 
     @Transactional
-    public fun userSignIn(request: UserSignInRequest): TokenResponse {
+    public fun userSignIn(request: UserSignInRequest): TokenRespwwonse {
         val user = userRepository.findUserByAccountId(request.accountId) ?: throw UserNotFoundException
 
         if(!passwordEncoder.matches(request.password, user.password))
