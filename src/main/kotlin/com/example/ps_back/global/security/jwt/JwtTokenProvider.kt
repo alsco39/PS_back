@@ -27,7 +27,7 @@ class JwtTokenProvider(
     }
 
     private fun generateToken(accountId: String, typ: String, exp: Long): String {
-        return jwtProperties.prefix + Jwts.builder()
+        return Jwts.builder()
             .setSubject(accountId)
             .claim("typ", typ)
             .signWith(SignatureAlgorithm.HS256, jwtProperties.secretKey)
@@ -61,9 +61,9 @@ class JwtTokenProvider(
 
     fun resolveToken(request: HttpServletRequest): String? {
         val bearer = request.getHeader(jwtProperties.header)
-        if (bearer != null && bearer.startsWith(prefix) && bearer.length > prefix.length + 1) return bearer.substring(
-            prefix.length + 1
-        )
+        if (bearer != null && bearer.startsWith(prefix) && bearer.length > prefix.length + 1) {
+            return bearer.substring(prefix.length + 1)
+        }
         return null
     }
 }
