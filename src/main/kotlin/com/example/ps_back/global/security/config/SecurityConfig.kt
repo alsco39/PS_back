@@ -25,12 +25,7 @@ class SecurityConfig(
             formLogin { disable() }
 
             authorizeHttpRequests {
-                authorize(HttpMethod.POST, "/users/signup", permitAll)
-                authorize(HttpMethod.POST, "/users/signin", permitAll)
 
-                authorize(HttpMethod.POST, "/images/upload", authenticated)
-
-                authorize(HttpMethod.POST, "/pets", authenticated)
             }
 
             sessionManagement { sessionCreationPolicy = SessionCreationPolicy.STATELESS }

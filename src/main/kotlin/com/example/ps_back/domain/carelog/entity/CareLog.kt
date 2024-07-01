@@ -18,6 +18,8 @@ class CareLog (
     @CreatedDate
     val createDate: LocalDate,
 
+    // title 추가
+
     @NotNull
     @ColumnDefault("''")
     @Column(columnDefinition = "VARCHAR(3000)")
